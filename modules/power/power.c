@@ -1,125 +1,189 @@
 /*
- * Copyright 2017 The Android Open Source Project
+ * Copyright (c) 2012-2013, The Linux Foundation. All rights reserved.
+ * Copyright (c) 2014, The CyanogenMod Project
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * You may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ * Redistribution and use in source and binary forms, with or without
+ * modification, are permitted provided that the following conditions are
+ * met:
+ * *    * Redistributions of source code must retain the above copyright
+ *       notice, this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above
+ *       copyright notice, this list of conditions and the following
+ *       disclaimer in the documentation and/or other materials provided
+ *       with the distribution.
+ *     * Neither the name of The Linux Foundation nor the names of its
+ *       contributors may be used to endorse or promote products derived
+ *       from this software without specific prior written permission.
  *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- * This contains the module build definitions for the hardware-specific
- * components for this device.
- * As much as possible, those components should be built unconditionally,
- * with device-specific names to avoid collisions, to avoid device-specific
- * bitrot and build breakages. Building a component unconditionally does
- * *not* include it on all devices, so it is safe even with hardware-specific
- * components.
+ * THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+ * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+ * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+ * ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+ * BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+ * BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+ * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+ * OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+ * IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
+#define LOG_NIDEBUG 0
+
 #include <errno.h>
-#include <fcntl.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <dlfcn.h>
+#include <stdlib.h>
 
-#define LOG_TAG "PowerHAL"
+#define LOG_TAG "TS PowerHAL"
+
 #include <utils/Log.h>
-
-#include <cutils/properties.h>
+#include <hardware/hardware.h>
 #include <hardware/power.h>
+#include <pthread.h>
+#include <cutils/properties.h>
 
-enum {
-    PROFILE_POWER_SAVE,
-    PROFILE_BALANCED,
-    PROFILE_HIGH_PERFORMANCE,
-    PROFILE_BIAS_POWER,
-    PROFILE_BIAS_PERFORMANCE,
+//#include "utils.h"
+#include "power-common.h"
+#include "power-feature.h"
+
+static struct hw_module_methods_t power_module_methods = {
+    .open = NULL,
 };
 
-#define POWER_NR_OF_SUPPORTED_PROFILES 5
+static pthread_mutex_t hint_mutex = PTHREAD_MUTEX_INITIALIZER;
 
-#define POWER_PROFILE_PROPERTY  "sys.perf.profile"
-#define POWER_SAVE_PROP         "0"
-#define BALANCED_PROP           "1"
-#define HIGH_PERFORMANCE_PROP   "2"
-#define BIAS_POWER_PROP         "3"
-#define BIAS_PERFORMANCE_PROP   "4"
+static void power_init(__attribute__((unused))struct power_module *module)
+{
+    ALOGI("TS power HAL initializing..");
+}
 
-static int current_power_profile = PROFILE_BALANCED;
+void call_fname_ts_power_sh(const char *fname, const char *action, int value)
+{
+	char tmp_str[1024] = "";
+    snprintf(tmp_str, sizeof(tmp_str), "sh %s %s %d", fname, action, value);
+	ALOGI("%s: call (%s)", __func__, tmp_str);
+	system(tmp_str);
+}
 
-static int sysfs_write(const char *path, char *s)
+#define USER_TS_POWER_SH "/sdcard/ts_power.sh"
+#define SYSTEM_TS_POWER_SH "/system/etc/ts_power.sh"
+
+void call_ts_power_sh(const char *action, int value)
+{
+	// ALOGI("%s: (%s, %d)", __func__, action, value);
+	static int post_init_done = 0;
+
+	if (!post_init_done) 
+	{
+		char tmp_str[PROPERTY_VALUE_MAX];
+		property_get("ts.post_init_done", tmp_str, "0");
+		if (tmp_str[0] == '1')
+		{
+			post_init_done = 1;
+			ALOGI("%s: post init ready!", __func__);
+		}
+	}
+
+	if (!post_init_done)
+	{
+		ALOGI("%s: post init not done yet..", __func__);
+		return;
+	}
+
+	if( access( USER_TS_POWER_SH, F_OK ) != -1 ) {
+		call_fname_ts_power_sh(USER_TS_POWER_SH, action, value);
+	}	
+	else if( access( SYSTEM_TS_POWER_SH, F_OK ) != -1 ) {
+		call_fname_ts_power_sh(SYSTEM_TS_POWER_SH, action, value);
+	}
+	else 
+	{
+		ALOGE("%s: ts_power.sh not found! (%s, %d)", __func__, action, value);
+	}
+}
+
+void set_profile(int profile)
+{
+	char tmp_str[PROPERTY_VALUE_MAX] = "";
+    snprintf(tmp_str, PROPERTY_VALUE_MAX, "%d", profile);
+	property_set("persist.ts.profile", tmp_str);
+
+	call_ts_power_sh("set_profile", profile);
+}
+
+static void power_hint(__attribute__((unused)) struct power_module *module, power_hint_t hint,
+        void *data)
+{
+    pthread_mutex_lock(&hint_mutex);
+
+    switch(hint) {
+        case POWER_HINT_VSYNC:
+        case POWER_HINT_INTERACTION:
+        case POWER_HINT_CPU_BOOST:
+        //case POWER_HINT_LAUNCH_BOOST:
+        //case POWER_HINT_AUDIO:
+        case POWER_HINT_LOW_POWER:
+        case POWER_HINT_VIDEO_ENCODE:
+        case POWER_HINT_VIDEO_DECODE:
+        break;
+        case POWER_HINT_SET_PROFILE:
+			// ALOGI("%s: POWER_HINT_SET_PROFILE = %d", __func__, *(int32_t *)data);
+			set_profile(*(int32_t *)data);			
+			break;
+        default:
+        break;
+    }
+
+out:
+    pthread_mutex_unlock(&hint_mutex);
+}
+
+int get_number_of_profiles()
+{
+    return 5;
+}
+
+void set_interactive(struct power_module *module, int on)
+{
+    pthread_mutex_lock(&hint_mutex);
+
+    ALOGI("Got set_interactive hint: on %d", on);
+
+	call_ts_power_sh("set_interactive", on);
+
+out:
+    pthread_mutex_unlock(&hint_mutex);
+}
+
+static int sysfs_write(char *path, char *s)
 {
     char buf[80];
     int len;
+    int ret = 0;
     int fd = open(path, O_WRONLY);
 
     if (fd < 0) {
         strerror_r(errno, buf, sizeof(buf));
         ALOGE("Error opening %s: %s\n", path, buf);
-        return -1;
+        return -1 ;
     }
 
     len = write(fd, s, strlen(s));
     if (len < 0) {
         strerror_r(errno, buf, sizeof(buf));
         ALOGE("Error writing to %s: %s\n", path, buf);
-        return -1;
+
+        ret = -1;
     }
 
     close(fd);
-    return 0;
+
+    return ret;
 }
-
-static void power_init(struct power_module *module __unused)
-{
-    ALOGI("%s", __func__);
-}
-
-static void power_set_interactive(struct power_module *module __unused,
-                int on __unused)
-{
-}
-
-static void set_power_profile(int profile)
-{
-    if (profile == current_power_profile)
-        return;
-
-    switch (profile) {
-    case PROFILE_POWER_SAVE:
-        property_set(POWER_PROFILE_PROPERTY, POWER_SAVE_PROP);
-        break;
-    case PROFILE_BALANCED:
-        property_set(POWER_PROFILE_PROPERTY, BALANCED_PROP);
-        break;
-    case PROFILE_HIGH_PERFORMANCE:
-        property_set(POWER_PROFILE_PROPERTY, HIGH_PERFORMANCE_PROP);
-        break;
-    case PROFILE_BIAS_POWER:
-        property_set(POWER_PROFILE_PROPERTY, BIAS_POWER_PROP);
-        break;
-    case PROFILE_BIAS_PERFORMANCE:
-        property_set(POWER_PROFILE_PROPERTY, BIAS_PERFORMANCE_PROP);
-        break;
-    }
-
-    current_power_profile = profile;
-}
-
-static void power_hint(struct power_module *module __unused, power_hint_t hint,
-                void *data __unused)
-{
-    if (hint == POWER_HINT_SET_PROFILE)
-        set_power_profile(*(int32_t *)data);
-}
-
-static struct hw_module_methods_t power_module_methods = {
-    .open = NULL,
-};
 
 static void set_feature(struct power_module *module __unused,
                 feature_t feature, int state)
@@ -134,10 +198,11 @@ static void set_feature(struct power_module *module __unused,
 #endif
 }
 
-static int get_feature(struct power_module *module __unused, feature_t feature)
+int get_feature(struct power_module *module __unused, feature_t feature)
 {
-    if (feature == POWER_FEATURE_SUPPORTED_PROFILES)
-        return POWER_NR_OF_SUPPORTED_PROFILES;
+    if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
+        return get_number_of_profiles();
+    }
     return -1;
 }
 
@@ -147,13 +212,14 @@ struct power_module HAL_MODULE_INFO_SYM = {
         .module_api_version = POWER_MODULE_API_VERSION_0_3,
         .hal_api_version = HARDWARE_HAL_API_VERSION,
         .id = POWER_HARDWARE_MODULE_ID,
-        .name = "Xiaomi Mi4C PowerHAL",
-        .author = "The Android Open Source Project",
+        .name = "TS MI4c Power HAL",
+        .author = "Qualcomm/CyanogenMod/TeamSuperluminal",
         .methods = &power_module_methods,
     },
+
     .init = power_init,
     .powerHint = power_hint,
-    .setInteractive = power_set_interactive,
+    .setInteractive = set_interactive,
     .setFeature = set_feature,
     .getFeature = get_feature
 };

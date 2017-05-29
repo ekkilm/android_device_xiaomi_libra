@@ -6,7 +6,7 @@ TARGET_RIL_VARIANT := caf
 BOARD_USES_QC_TIME_SERVICES := true
 
 # Power
-TARGET_POWERHAL_VARIANT := none
+TARGET_POWERHAL_VARIANT := tspower
 
 # Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true

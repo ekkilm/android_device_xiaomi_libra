@@ -2,3 +2,6 @@ sys.fake_bs_flag0                    u:object_r:fake_bs_flag0_prop:s0
 sys.fake_bs_flag1                    u:object_r:fake_bs_flag1_prop:s0
 wlan.driver.status                   u:object_r:wlan_driver_status_prop:s0
 ro.sys.oem.sno                       u:object_r:oem_sno_prop:s0
+
+ts.post_init_done                    u:object_r:ts_post_init_done_prop:s0
+persist.ts.profile                   u:object_r:persist_ts_profile:s0

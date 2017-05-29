@@ -6,6 +6,10 @@ PRODUCT_PACKAGES += \
     audio.r_submix.default \
     audio.usb.default
 
+# Amplifier
+PRODUCT_PACKAGES += \
+    audio_amplifier.msm8992
+
 # some extra tools
 PRODUCT_PACKAGES += \
     tinycap \

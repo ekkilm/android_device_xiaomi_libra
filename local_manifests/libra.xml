@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest>
+
+	<!-- Kernel -->
+	<project name="LineageOS/android_kernel_xiaomi_msm8992" path="kernel/xiaomi/msm8992" remote="github" revision="cm-14.1"/>
+	
+	<!-- Device -->
+	<project name="ekkilm/android_device_xiaomi_libra" path="device/xiaomi/libra" remote="github" revision="cm-14.1"/>
+
+	<!-- Qcom common -->
+	<project name="LineageOS/android_device_qcom_common" path="device/qcom/common" remote="github" revision="cm-14.1" />
+
+	<!-- Device settings -->
+	<project name="LineageOS/android_packages_resources_devicesettings" path="packages/resources/devicesettings" remote="github" revision="cm-14.1" />
+
+	<!-- Camera -->
+	<project name="omnirom/android_packages_apps_SnapdragonCamera" path="packages/apps/SnapdragonCamera" remote="github" revision="android-7.1" />
+
+</manifest>

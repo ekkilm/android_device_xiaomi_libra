@@ -1,0 +1,62 @@
+<resources>
+    <string name="app_name">ROM Lisäasetukset</string>    
+    
+    <string name="error">Virhe</string>
+    <string name="reboot_needed">Uudelleen käynnistys</string>
+    <string name="ok">OK</string>
+    <string name="yes">Kyllä</string>
+    <string name="no">Ei</string>
+
+    <string name="newinstall_subject">Asennus Onnistui</string>
+    <string name="newinstall_welcome">Onnea! Olet juuri asentanut TS LOS14.1 puhelimeesi!\nKatso ROM Lisäasetukset säätääksesi puhelimen sinulle sopivaksi.\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
+    <string name="update_subject">Päivitys Onnistui</string>
+    <string name="update_welcome">Onnea! Olet juuri päivittänyt TS LOS14.1\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
+    
+    <string name="reboot_reason_captive">Internet tilan tarkistus moodin vaihtamiseen vaaditaan uudelleen käynnistys. Käynnistä nyt uudelleen?</string>    
+        
+    <!-- Hide root icon -->
+    <string name="pref_title_enable_hroot">Piiloita root ikoni</string>
+    <string name="pref_summary_enable_hroot">Piiloita root ikoni (#) tilapalkista</string>    
+    
+    <string name="pref_header_root">Pääkäyttäjän Asetukset</string>
+    <string name="pref_title_install_root">Asenna pääkäyttäjän oikeudet</string>
+    <string name="pref_title_uninstall_root">Poista pääkäyttäjän oikeudet</string>
+    <string name="pref_popup_install_root">Tämä toiminto uudelleenkäynnistää recovery-tilaan ja asentaa pääkäyttäjän oikeudet. Oletko varma?</string>
+    <string name="pref_popup_uninstall_root">Tämä toiminto uudelleenkäynnistää recovery-tilaan ja poistaa pääkäyttäjän oikeudet. Oletko varma?</string>
+
+    <!-- Disable fast charge blink -->
+    <string name="pref_title_enable_nochgp">Pulssita lediä nopeassa latauksessa</string>
+    <string name="pref_summary_enable_nochgp">Poista pulssitus käytöstä</string>    
+
+    <!-- Ambient display pickup sensor enable -->
+    <string name="pref_title_enable_psen">Ambient näyttö</string>
+    <string name="pref_summary_enable_psen">Kun puhelin otetaan käteen, ambient näyttö syttyy</string>    
+
+    <!-- edge tap enable -->
+    <string name="pref_title_enable_etap">Reunan tuplanapautus</string>
+    <string name="pref_summary_enable_etap">Reunan tuplanapautus aiheuttaa taaksepäin painalluksen</string>    
+
+    <!-- Close apps enable -->
+    <string name="pref_title_enable_crec">Sulje käynnissä olevat ohjelmat</string>
+    <string name="pref_summary_enable_crec">Järjestelmä sulkee käynnissä olevat ohjelmat automaattisesti kun näyttö sammuu</string>    
+
+    <!-- Captive portal enable -->
+    <string name="pref_title_enable_capt">Internet tilan tarkistus</string>
+    <string name="pref_summary_enable_capt">Mahdollista internet tarkistus googlen palvelimelta</string>    
+    
+    <!-- General -->
+    <string name="pref_header_general">Yleiset</string>
+    <string name="pref_header_extra">Lisäasetukset</string>
+    <string name="pref_title_donate">Paypal lahjoitus</string>
+    <string name="pref_summary_donate">Haluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon, KIITOS!</string>
+    <string name="pref_title_donate2">Play kauppa lahjoitus</string>
+    <string name="pref_summary_donate2">Haluatko päivityksia jatkossakin? Lahjoita palvelimien ylläpitoon ostamalla sovellus play kaupasta, KIITOS!</string>
+
+	<!-- Lockscreen -->
+	<string name="pref_header_ls">Lukitusnäyttö</string>
+	<string name="pref_title_enable_lsst">Lukitusnäytön läpinäkyvyys</string>
+	<string name="pref_summary_enable_lsst">Jos päällä, voit nähdä Lukitusnäytön lävitse</string>
+	<string name="pref_title_lsblurrad">Lukitusnäytön sumennus</string>
+	<string name="pref_summary_lsblurrad">Läpinäkyvyyden sumennus määrä (1 - 250)</string>
+
+</resources>

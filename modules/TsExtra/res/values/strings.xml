@@ -1,0 +1,40 @@
+<resources>
+    <string name="app_name">ROM Extra Settings</string>    
+    
+    <string name="error">Error</string>
+    <string name="reboot_needed">Reboot Needed</string>
+    <string name="ok">OK</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="newinstall_subject">Installed Successfully</string>
+    <string name="newinstall_welcome">Congratulations! You have just installed TS LOS14.1 for your Xiaomi mi4c\nTake a look at ROM Extra Settings for fine tuning your experience.\nWant to keep your for phone up to date in future also? Please donate few bucks for server costs.\nEnjoy!</string>
+    <string name="update_subject">Upgraded Successfully</string>
+    <string name="update_welcome">Congratulations! You have just updated your TS LOS14.1\nWant to keep your for phone up to date in future also? Please donate few bucks for server costs.\nEnjoy!</string>
+    
+    <!-- General -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_title_donate">Paypal donate</string>
+    <string name="pref_summary_donate">Want to keep your device up to date? Please donate few bucks for server costs, THANK YOU!</string>
+    <string name="pref_title_donate2">Play Store donate</string>
+    <string name="pref_summary_donate2">Want to keep your device up to date? Please buy donation app from Google Play store, THANK YOU!</string>
+
+	<!-- Extra -->
+    <string name="pref_header_extra">Extra Settings</string>
+    <!-- Captive portal enable -->
+    <string name="pref_title_enable_capt">Internet detection</string>
+    <string name="pref_summary_enable_capt">Enable google captive portal detection</string>    
+    <string name="reboot_reason_captive">When changing internet detection mode, system reboot is required. Reboot now?</string>    
+
+    <!-- Hide root icon -->
+    <string name="pref_title_enable_hroot">Hide root icon</string>
+    <string name="pref_summary_enable_hroot">Hide root icon (#) from status bar</string>    
+
+	<!-- Root -->
+    <string name="pref_header_root">Root Settings</string>
+    <string name="pref_title_install_root">Install root access</string>
+    <string name="pref_title_uninstall_root">Uninstall root access</string>
+    <string name="pref_popup_install_root">This operation will reboot to recovery and install root access files. Do you want to continue?</string>
+    <string name="pref_popup_uninstall_root">This operation will reboot to recovery and uninstall root access. Do you want to continue?</string>
+
+</resources>

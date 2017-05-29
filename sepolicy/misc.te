@@ -1,0 +1,44 @@
+allow audioserver audio_prop:property_service set;
+allow audioserver persist_file:dir search;
+
+allow priv_app device:dir read;
+allow priv_app device:dir write;
+allow priv_app device:dir open;
+
+allow installd shell_exec:file { entrypoint getattr read };
+allow installd system_data_file:file open;
+
+allow system_app cache_file:dir create_dir_perms;
+allow system_app cache_file:file create_file_perms;
+
+allow system_server unlabeled:file unlink;
+
+allow untrusted_app sysfs:file getattr;
+allow untrusted_app sysfs:file read;
+allow untrusted_app sysfs:file write;
+allow untrusted_app sysfs:file open;
+
+allow dpmd self:capability sys_ptrace;
+
+allow platform_app app_data_file:file execute;
+allow isolated_app app_data_file:dir search;
+
+set_prop(qti_init_shell, ts_post_init_done_prop)
+allow qti_init_shell system_data_file:file open;
+allow qti_init_shell persist_ts_profile:file open;
+allow qti_init_shell persist_ts_profile:file read;
+allow qti_init_shell persist_ts_profile:file getattr;
+allow qti_init_shell sysfs:dir setattr;
+allow qti_init_shell sysfs:lnk_file setattr;
+allow qti_init_shell sysfs_devices_system_cpu:dir setattr;
+allow qti_init_shell sysfs_devices_system_cpu:file setattr;
+allow qti_init_shell sysfs_devices_system_cpu:lnk_file setattr;
+allow qti_init_shell sysfs_mpdecision:file { getattr setattr };
+allow qti_init_shell sysfs_rqstats:dir setattr;
+allow qti_init_shell sysfs_thermal:dir setattr;
+allow qti_init_shell sysfs_thermal:file setattr;
+
+set_prop(system_server, ts_post_init_done_prop)
+set_prop(system_server, persist_ts_profile)
+allow system_server shell_exec:file { execute execute_no_trans getattr open read };
+allow system_server sysfs_thermal:file write;

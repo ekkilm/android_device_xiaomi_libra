@@ -14,10 +14,12 @@ persist.rild.nitz_short_ons_1=
 persist.rild.nitz_short_ons_2=
 persist.rild.nitz_short_ons_3=
 ril.subscription.types=RUIM
+persist.sys.ssr.restart_level=ALL_ENABLE
+persist.sys.ssr.enable_ramdumps=1
 persist.radio.multisim.config=dsds
 DEVICE_PROVISIONED=1
-# Start in TD-SCDMA, GSM/WCDMA and LTE mode
-ro.telephony.default_network=20,20
+# Start in global mode (TD-SCDMA/LTE/GSM/WCDMA, CDMA, and EvDo)
+ro.telephony.default_network=22,22
 ro.telephony.default_cdma_sub=0
 
 debug.sf.hw=1
@@ -262,11 +264,3 @@ persist.radio.apm_sim_not_pwdn=1
 sys.haptic.down.weak=0,10,15,30
 sys.haptic.down.normal=0,15,20,45
 sys.haptic.down.strong=0,20,25,60
-
-# ADB
-ro.adb.secure=0
-ro.secure=0
-ro.allow.mock.location=1
-persist.service.adb.enable=1
-persist.service.debuggable=1
-persist.sys.usb.config=mtp,adb
