@@ -38,6 +38,17 @@ allow qti_init_shell sysfs_rqstats:dir setattr;
 allow qti_init_shell sysfs_thermal:dir setattr;
 allow qti_init_shell sysfs_thermal:file setattr;
 
+allow qti_init_shell storage_file:dir getattr;
+allow qti_init_shell storage_file:dir search;
+allow qti_init_shell storage_file:lnk_file read;
+allow qti_init_shell system_data_file:file unlink;
+allow qti_init_shell system_data_file:file create;
+allow qti_init_shell system_data_file:file { setattr write };
+allow qti_init_shell media_rw_data_file:dir search;
+allow qti_init_shell media_rw_data_file:file getattr;
+allow qti_init_shell media_rw_data_file:file read;
+allow qti_init_shell media_rw_data_file:file open;
+
 set_prop(system_server, ts_post_init_done_prop)
 set_prop(system_server, persist_ts_profile)
 allow system_server shell_exec:file { execute execute_no_trans getattr open read };

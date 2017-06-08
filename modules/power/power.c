@@ -69,7 +69,7 @@ void call_fname_ts_power_sh(const char *fname, const char *action, int value)
 	system(tmp_str);
 }
 
-#define USER_TS_POWER_SH "/sdcard/ts_power.sh"
+#define USER_TS_POWER_SH "/data/ts_power.sh"
 #define SYSTEM_TS_POWER_SH "/system/etc/ts_power.sh"
 
 void call_ts_power_sh(const char *action, int value)

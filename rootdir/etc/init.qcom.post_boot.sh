@@ -236,10 +236,27 @@ if [ "$profile" = "" ]; then
 	profile=1
 fi
 
+if [ -f /data/media/0/ts_power.sh ]; then
+	logi "custom ts_power.sh found"
+	if cmp -s /data/media/0/ts_power.sh /data/ts_power.sh; then
+		logi "custom ts_power.sh match"
+	else
+		logi "New custom ts_power.sh"
+		cp /data/media/0/ts_power.sh /data/ts_power.sh
+		chown -h system /data/ts_power.sh
+	fi
+else
+	logi "custom ts_power.sh NOT found"
+	if [ -f /data/ts_power.sh ]; then
+		logi "Remove custom ts_power.sh"
+		rm -f /data/ts_power.sh
+	fi
+fi
+
 # Call ts_power.sh, if found
-if [ -f /sdcard/ts_power.sh ]; then
-	logi "Call /sdcard/ts_power.sh set_profile $profile"
-	sh /sdcard/ts_power.sh set_profile $profile
+if [ -f /data/ts_power.sh ]; then
+	logi "Call /data/ts_power.sh set_profile $profile"
+	sh /data/ts_power.sh set_profile $profile
 elif [ -f /system/etc/ts_power.sh ]; then
 	logi "Call /system/etc/ts_power.sh set_profile $profile"
 	sh /system/etc/ts_power.sh set_profile $profile

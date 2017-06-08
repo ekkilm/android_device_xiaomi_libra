@@ -226,6 +226,10 @@ persist.radio.VT_HYBRID_ENABLE=1
 ro.sys.oosenhance.enable=true
 ro.sys.oosenhance.timer=20000
 
+# GPS
+persist.gps.qc_nlp_in_use=0
+ro.gps.agps_provider=1
+
 # button jack mode & switch
 persist.sys.button_jack_profile=volume
 persist.sys.button_jack_switch=0

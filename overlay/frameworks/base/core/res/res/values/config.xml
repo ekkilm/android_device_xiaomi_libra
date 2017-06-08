@@ -201,9 +201,6 @@
          and the screen off animation has been performed. -->
     <bool name="config_dozeAfterScreenOff">true</bool>
 
-    <!-- Doze: should the TYPE_PICK_UP_GESTURE sensor be used as a pulse signal. -->
-    <bool name="config_dozePulsePickup">true</bool>
-
     <!-- Specifies whether to decouple the interactive state of the device from the display on/off state. -->
     <bool name="config_powerDecoupleInteractiveModeFromDisplay">true</bool>
 
@@ -359,12 +356,12 @@
     <!-- Values for GPS configuration -->
     <string-array translatable="false" name="config_gpsParameters">
         <item>SUPL_HOST=supl.google.com</item>
-        <item>SUPL_PORT=7276</item>
-        <item>NTP_SERVER=europe.pool.ntp.org</item>
+        <item>SUPL_PORT=7275</item>
+        <item>NTP_SERVER=time.gpsonextra.net</item>
         <item>SUPL_VER=0x20000</item>
         <item>SUPL_MODE=1</item>
     </string-array>
-
+    
     <!-- enable doze powersaving mode -->
     <bool name="config_enableAutoPowerModes">true</bool>
 
@@ -468,5 +465,11 @@
 
     <!-- Enable blur support -->
     <bool name="config_uiBlurEnabled">true</bool>
+    
+    <!-- The RadioAccessFamilies supported by the device.
+         Empty is viewed as "all".  Only used on devices which
+         don't support RIL_REQUEST_GET_RADIO_CAPABILITY
+         format is UMTS|LTE|... -->
+    <string translatable="false" name="config_radio_access_family">GPRS|EDGE|UMTS|IS95A|IS95B|1XRTT|EVDO_0|EVDO_A|HSDPA|HSUPA|HSPA|EVDO_B|EHRPD|LTE|HSPAP|GSM|TD_SCDMA|HS|CDMA|EVDO|WCDMA</string>
 
 </resources>
