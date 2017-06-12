@@ -958,9 +958,6 @@ vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
-lib/libvulkan.so
-lib64/libvulkan.so
-
 
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
