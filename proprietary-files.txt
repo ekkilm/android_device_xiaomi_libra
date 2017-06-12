@@ -501,7 +501,7 @@ vendor/lib64/libmorpho_panorama_gp.so
 bin/dpmd
 etc/dpm/dpm.conf
 etc/dpm/nsrm/NsrmConfiguration.xml
-etc/mcd_default.conf
+#etc/mcd_default.conf
 etc/permissions/com.qti.dpmframework.xml
 etc/permissions/dpmapi.xml
 -framework/com.qti.dpmframework.jar
@@ -958,6 +958,9 @@ vendor/lib/libCB.so
 vendor/lib/libgsl.so
 vendor/lib/libllvm-glnext.so
 vendor/lib/libllvm-qcom.so
+lib/libvulkan.so
+lib64/libvulkan.so
+
 
 vendor/lib/librs_adreno.so
 vendor/lib/librs_adreno_sha1.so
