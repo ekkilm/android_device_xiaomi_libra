@@ -51,6 +51,12 @@
             android:title="@string/pref_header_extra"
             android:key="pref_header_extra_settings">
 
+         <Preference
+			android:key="install_vulkan"
+			android:title="@string/pref_title_install_vulkan"
+			android:summary="@string/pref_summary_install_vulkan"
+			android:defaultValue="false" />
+
 		<CheckBoxPreference
 			android:key="capt_en_b"
 			android:title="@string/pref_title_enable_capt"

@@ -219,7 +219,6 @@ persist.sys.button_jack_switch=0
 #
 # ADDITIONAL_BUILD_PROPERTIES (stock)
 #
-ro.vendor.extension_library=libqti-perfd-client.so
 persist.radio.custom_ecc=1
 persist.radio.sib16_support=1
 ro.frp.pst=/dev/block/bootdevice/by-name/config

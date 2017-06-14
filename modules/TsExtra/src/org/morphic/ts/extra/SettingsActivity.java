@@ -183,6 +183,55 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			alert.show();
 		}
 		
+		private boolean checkVulkan()
+		{
+			return TsUtils.fileExists("/vendor/lib/hw/vulkan.msm8992.so");
+		}
+
+		private void installVulkan() {
+
+			if (checkVulkan())
+			{
+				 AlertDialog.Builder builder = new AlertDialog.Builder(this);
+					  builder
+					  .setTitle(getString(R.string.pref_title_install_vulkan))
+					  .setMessage(getString(R.string.pref_popup_already_vulkan))
+					  .setIcon(android.R.drawable.ic_dialog_alert)
+					  .setPositiveButton(getString(R.string.ok), new DialogInterface.OnClickListener()
+					  {
+						public void onClick(DialogInterface dialog, int which)
+						{
+						  dialog.dismiss();
+						}
+					  });
+				builder.create().show();
+				return;
+			}
+
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder
+			.setTitle(getString(R.string.pref_title_install_vulkan))
+			.setMessage(getString(R.string.pref_popup_install_vulkan))
+			.setIcon(android.R.drawable.ic_dialog_alert)
+			.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener()
+			{
+				public void onClick(DialogInterface dialog, int which)
+				{
+					TsUtils.recoInstall(SettingsActivity.this, "/system/opt/vulkan.zip");
+				}
+			});
+			builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener()
+			{
+				public void onClick(DialogInterface dialog, int which)
+				{
+					dialog.dismiss();
+				}
+			});
+
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
+
 		@Override
 		protected void onResume() {
 			super.onResume();
@@ -283,6 +332,19 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 				public boolean onPreferenceClick(Preference arg0) {
 					try {
 						uninstallSu();
+					} catch (Exception e) { }
+					return true;
+				}
+			});
+
+
+			button = (Preference)findPreference("install_vulkan");
+			button.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
+				@Override
+				public boolean onPreferenceClick(Preference arg0) {
+					Log.d(TAG, "install_vulkan clicked");
+					try {
+						installVulkan();
 					} catch (Exception e) { }
 					return true;
 				}

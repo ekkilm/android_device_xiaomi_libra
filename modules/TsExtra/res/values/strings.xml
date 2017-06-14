@@ -21,6 +21,13 @@
 
 	<!-- Extra -->
     <string name="pref_header_extra">Extra Settings</string>
+
+    <!-- Vulkan -->
+    <string name="pref_title_install_vulkan">GPU Vulkan</string>
+    <string name="pref_summary_install_vulkan">Install GPU Vulkan support</string>
+    <string name="pref_popup_install_vulkan">This operation will reboot to recovery and install GPU Vulkan support. Do you want to continue?</string>
+	<string name="pref_popup_already_vulkan">Looks like there is GPU Vulkan support already installed! For removing Vulkan support you need to re-install rom.</string>
+
     <!-- Captive portal enable -->
     <string name="pref_title_enable_capt">Internet detection</string>
     <string name="pref_summary_enable_capt">Enable google captive portal detection</string>    

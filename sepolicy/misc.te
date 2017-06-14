@@ -53,3 +53,5 @@ set_prop(system_server, ts_post_init_done_prop)
 set_prop(system_server, persist_ts_profile)
 allow system_server shell_exec:file { execute execute_no_trans getattr open read };
 allow system_server sysfs_thermal:file write;
+
+allow cameraserver sysfs:file write;

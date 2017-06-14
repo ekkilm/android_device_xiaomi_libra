@@ -2,7 +2,7 @@
 <manifest>
 
 	<!-- Kernel -->
-	<project name="ekkilm/android_kernel_xiaomi_msm8992" path="kernel/xiaomi/msm8992" remote="github" revision="cm-14.1"/>
+	<project name="ekkilm/android_kernel_xiaomi_msm8992" path="kernel/xiaomi/msm8992" remote="github" revision="cm-14.1-mike"/>
 	
 	<!-- Device -->
 	<project name="ekkilm/android_device_xiaomi_libra" path="device/xiaomi/libra" remote="github" revision="cm-14.1"/>

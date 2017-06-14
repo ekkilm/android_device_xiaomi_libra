@@ -11,8 +11,6 @@
     <string name="newinstall_welcome">Onnea! Olet juuri asentanut TS LOS14.1 puhelimeesi!\nKatso ROM Lisäasetukset säätääksesi puhelimen sinulle sopivaksi.\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
     <string name="update_subject">Päivitys Onnistui</string>
     <string name="update_welcome">Onnea! Olet juuri päivittänyt TS LOS14.1\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
-    
-    <string name="reboot_reason_captive">Internet tilan tarkistus moodin vaihtamiseen vaaditaan uudelleen käynnistys. Käynnistä nyt uudelleen?</string>    
         
     <!-- Hide root icon -->
     <string name="pref_title_enable_hroot">Piiloita root ikoni</string>
@@ -40,9 +38,16 @@
     <string name="pref_title_enable_crec">Sulje käynnissä olevat ohjelmat</string>
     <string name="pref_summary_enable_crec">Järjestelmä sulkee käynnissä olevat ohjelmat automaattisesti kun näyttö sammuu</string>    
 
+	<!-- Vulkan -->
+    <string name="pref_title_install_vulkan">GPU Vulkan</string>
+    <string name="pref_summary_install_vulkan">Asentaa GPU Vulkan tuen</string>
+    <string name="pref_popup_install_vulkan">Tämä toiminto uudelleenkäynnistää recovery-tilaan ja asentaa GPU Vulkan tuen. Oletko varma?</string>
+	<string name="pref_popup_already_vulkan">Näyttää siltä, että on GPU Vulkan tuki on jo asennettu! Poistaaksesi GPU Vulkan tuen, sinun täytyy uudelleen asentaa rom.</string>
+
     <!-- Captive portal enable -->
     <string name="pref_title_enable_capt">Internet tilan tarkistus</string>
-    <string name="pref_summary_enable_capt">Mahdollista internet tarkistus googlen palvelimelta</string>    
+    <string name="pref_summary_enable_capt">Mahdollista internet tarkistus googlen palvelimelta</string>
+    <string name="reboot_reason_captive">Internet tilan tarkistus moodin vaihtamiseen vaaditaan uudelleen käynnistys. Käynnistä nyt uudelleen?</string>
     
     <!-- General -->
     <string name="pref_header_general">Yleiset</string>

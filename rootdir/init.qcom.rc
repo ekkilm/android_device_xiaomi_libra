@@ -91,6 +91,7 @@ on boot
     mkdir /dev/socket/qmux_nfc 0770 nfc nfc
     chmod 2770 /dev/socket/qmux_nfc
     chmod 0666 /sys/class/leds/flashlight/brightness
+    chmod 0666 sys/class/leds/led\:torch_0/brightness
 
     mkdir /persist/bluetooth 0770 bluetooth bluetooth
 
