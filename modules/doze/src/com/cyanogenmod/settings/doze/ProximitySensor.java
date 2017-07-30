@@ -25,7 +25,7 @@ import android.util.Log;
 
 public class ProximitySensor implements SensorEventListener {
 
-    private static final boolean DEBUG = true;//false;
+    private static final boolean DEBUG = false;
     private static final String TAG = "ProximitySensor";
 
     private static final int POCKET_DELTA_NS = 1000 * 1000 * 1000;

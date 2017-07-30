@@ -8,13 +8,9 @@
     <string name="no">Ei</string>
 
     <string name="newinstall_subject">Asennus Onnistui</string>
-    <string name="newinstall_welcome">Onnea! Olet juuri asentanut TS LOS14.1 puhelimeesi!\nKatso ROM Lisäasetukset säätääksesi puhelimen sinulle sopivaksi.\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
+    <string name="newinstall_welcome">Onnea! Olet juuri asentanut TS aospa7 puhelimeesi!\nKatso ROM Lisäasetukset säätääksesi puhelimen sinulle sopivaksi.\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
     <string name="update_subject">Päivitys Onnistui</string>
-    <string name="update_welcome">Onnea! Olet juuri päivittänyt TS LOS14.1\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string>
-        
-    <!-- Hide root icon -->
-    <string name="pref_title_enable_hroot">Piiloita root ikoni</string>
-    <string name="pref_summary_enable_hroot">Piiloita root ikoni (#) tilapalkista</string>    
+    <string name="update_welcome">Onnea! Olet juuri päivittänyt TS aospa7\nHaluatko päivityksia jatkossakin? Lahjoita hieman palvelimien ylläpitoon.\nNauti!</string> 
     
     <string name="pref_header_root">Pääkäyttäjän Asetukset</string>
     <string name="pref_title_install_root">Asenna pääkäyttäjän oikeudet</string>
@@ -37,6 +33,10 @@
     <!-- Close apps enable -->
     <string name="pref_title_enable_crec">Sulje käynnissä olevat ohjelmat</string>
     <string name="pref_summary_enable_crec">Järjestelmä sulkee käynnissä olevat ohjelmat automaattisesti kun näyttö sammuu</string>    
+
+	<!-- Powerprofiles -->
+	<string name="pref_title_powerprofile">Virrankäyttötila</string>
+    <string name="pref_summary_powerprofile">Valitse laitteen virrankäyttötila</string>
 
 	<!-- Vulkan -->
     <string name="pref_title_install_vulkan">GPU Vulkan</string>

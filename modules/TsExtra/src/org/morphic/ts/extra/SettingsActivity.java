@@ -97,30 +97,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			alert.show();
 		}
 
-		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
-		{
-			Log.d(TAG, key);
-
-			if (key.endsWith("_b")) // Boolean settings ends with "_b"
-			{
-				saveSettingToProp(key, sharedPreferences.getBoolean(key, false) ? "1" : "0");
-			}
-			else
-			{
-				saveSettingToProp(key, sharedPreferences.getString(key, ""));
-			}
-
-			if (key.equals("capt_en_b"))
-			{
-				Settings.Global.putInt(this.getContentResolver(),
-				                       Settings.Global.CAPTIVE_PORTAL_DETECTION_ENABLED, sharedPreferences.getBoolean(key, true) ? 1 : 0);
-				reboot(getString(R.string.reboot_reason_captive));
-			}
-		}
-		
 		private boolean checkSU()
 		{
-			return TsUtils.fileExists("/system/xbin/su");
+			return TsUtils.fileExists("/su/");
 		}
 		
 		private void installSu()
@@ -134,11 +113,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			{
 				public void onClick(DialogInterface dialog, int which)
 				{
-					if (SystemProperties.get(ROOT_ACCESS_PROPERTY, "0").equals("0"))
 					{
-						SystemProperties.set(ROOT_ACCESS_PROPERTY, "1");
+					TsUtils.recoInstall(SettingsActivity.this, "/system/opt/supersu.zip");
 					}
-					TsUtils.recoInstall(SettingsActivity.this, "/system/opt/addonsu-arm64-signed.zip");
 				}
 			});
 			builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener()
@@ -164,11 +141,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			{
 				public void onClick(DialogInterface dialog, int which)
 				{
-					if (Settings.Global.getInt(SettingsActivity.this.getContentResolver(), Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, 0) == 0)
 					{
-						SystemProperties.set(ROOT_ACCESS_PROPERTY, "0");
+					TsUtils.recoInstall(SettingsActivity.this, "/system/opt/supersu_un.zip");
 					}
-					TsUtils.recoInstall(SettingsActivity.this, "/system/opt/addonsu-remove-arm64-signed.zip");
 				}
 			});
 			builder.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener()
@@ -232,6 +207,43 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			alert.show();
 		}
 
+		public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key)
+		{
+			Log.d(TAG, key);
+			
+			if (key.endsWith("_b")) // Boolean settings ends with "_b"
+			{
+				saveSettingToProp(key, sharedPreferences.getBoolean(key, false) ? "1" : "0");
+			}
+			else
+			{
+				saveSettingToProp(key, sharedPreferences.getString(key, ""));
+			}
+		
+			if (key.equals("capt_en_b"))
+			{
+				Settings.Global.putInt(this.getContentResolver(),
+				                       Settings.Global.CAPTIVE_PORTAL_DETECTION_ENABLED, sharedPreferences.getBoolean(key, true) ? 1 : 0);
+				reboot(getString(R.string.reboot_reason_captive));
+			}
+			else if (key.equals("powerprofile"))
+			{
+				try {
+					String val = sharedPreferences.getString(key, "1");
+					SystemProperties.set("persist.ts.profile", val);
+					if (TsUtils.fileExists("/data/ts_power.sh"))
+					{
+						Runtime.getRuntime().exec(new String[] { "/system/bin/sh", "/data/ts_power.sh", "set_profile", val});
+					} else {
+						Runtime.getRuntime().exec(new String[] { "/system/bin/sh", "/system/etc/ts_power.sh", "set_profile", val});
+					}
+				}
+				catch (Exception e) {
+					Log.d(TAG, "ERROR: " + e.getMessage());
+				}
+			}
+		}
+
 		@Override
 		protected void onResume() {
 			super.onResume();
@@ -279,6 +291,9 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			SharedPreferences.Editor editor = getSharedPreferences("TsExtra_preferences", 0).edit();
 
 			loadBoolSettingFromProp(editor, "hroot_en_b");
+
+			//loadSettingFromProp(editor, "powerprofile");			
+			editor.putString("powerprofile", SystemProperties.get("persist.ts.profile", "1"));
 
 			editor.putBoolean("capt_en_b", Settings.Global.getInt(this.getContentResolver(),
 			                  Settings.Global.CAPTIVE_PORTAL_DETECTION_ENABLED, 1) == 1 ? true : false);
@@ -356,7 +371,6 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
 			} else {
 				Log.d(TAG, "SU not detected");
 				((PreferenceGroup) findPreference("pref_header_root_settings")).removePreference(findPreference("uninstall_su"));
-				((PreferenceGroup) findPreference("pref_header_root_settings")).removePreference(findPreference("hroot_en_b"));
 			}
 		}
 

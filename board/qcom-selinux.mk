@@ -1,2 +1,2 @@
 # SELinux
-include device/qcom/sepolicy/sepolicy.mk
+TARGET_EXCLUDE_QCOM_SEPOLICY= false

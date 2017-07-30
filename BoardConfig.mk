@@ -19,6 +19,6 @@ DEVICE_PATH := device/xiaomi/libra
 # A new experiment..
 include $(DEVICE_PATH)/PlatformConfig.mk
 include $(DEVICE_PATH)/board/*.mk
-
+include device/qcom/sepolicy/Android.mk
 
 -include vendor/xiaomi/libra/BoardConfigVendor.mk

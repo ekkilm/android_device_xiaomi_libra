@@ -7,12 +7,12 @@
     <string name="yes">Tak</string>
     <string name="no">Nie</string>
     <string name="newinstall_subject">Zainstalowano pomyślnie</string>
-    <string name="newinstall_welcome">"Gratulacje! Właśnie zainstalowałeś TS LOS14.1 na swoim Xiaomi mi4c
+    <string name="newinstall_welcome">"Gratulacje! Właśnie zainstalowałeś TS aospa7 na swoim Xiaomi mi4c
 Sprawdź Zaawansowane ustawienia dla lepszego dostosowania swojego urządzenia.
 Chcesz mieć stale aktualny system? Wesprzyj nas małą kwotą.
 Miłego dnia!"</string>
     <string name="update_subject">Zaktualizowano pomyślnie</string>
-    <string name="update_welcome">"Gratulacje! Pomyślnie zaktualizowałeś TS LOS14.1
+    <string name="update_welcome">"Gratulacje! Pomyślnie zaktualizowałeś TS aospa7
 Chcesz mieć stale aktualny system? Wesprzyj nas małą kwotą.
 Miłego dnia!"</string>
     <string name="reboot_reason_captive">Przy zmianie metody wykrywania internetu konieczny jest restart. Zrobić to teraz?</string>

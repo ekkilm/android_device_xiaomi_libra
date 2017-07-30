@@ -123,17 +123,17 @@ static void power_hint(__attribute__((unused)) struct power_module *module, powe
     switch(hint) {
         case POWER_HINT_VSYNC:
         case POWER_HINT_INTERACTION:
-        case POWER_HINT_CPU_BOOST:
+        //case POWER_HINT_CPU_BOOST:
         //case POWER_HINT_LAUNCH_BOOST:
         //case POWER_HINT_AUDIO:
         case POWER_HINT_LOW_POWER:
         case POWER_HINT_VIDEO_ENCODE:
         case POWER_HINT_VIDEO_DECODE:
         break;
-        case POWER_HINT_SET_PROFILE:
+        /*case POWER_HINT_SET_PROFILE:
 			// ALOGI("%s: POWER_HINT_SET_PROFILE = %d", __func__, *(int32_t *)data);
 			set_profile(*(int32_t *)data);			
-			break;
+			break;*/
         default:
         break;
     }
@@ -185,8 +185,7 @@ static int sysfs_write(char *path, char *s)
     return ret;
 }
 
-static void set_feature(struct power_module *module __unused,
-                feature_t feature, int state)
+void set_feature(struct power_module *module, feature_t feature, int state)
 {
 #ifdef TAP_TO_WAKE_NODE
     char tmp_str[64];
@@ -200,9 +199,9 @@ static void set_feature(struct power_module *module __unused,
 
 int get_feature(struct power_module *module __unused, feature_t feature)
 {
-    if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
+    /*if (feature == POWER_FEATURE_SUPPORTED_PROFILES) {
         return get_number_of_profiles();
-    }
+    }*/
     return -1;
 }
 
@@ -221,5 +220,5 @@ struct power_module HAL_MODULE_INFO_SYM = {
     .powerHint = power_hint,
     .setInteractive = set_interactive,
     .setFeature = set_feature,
-    .getFeature = get_feature
+    // .getFeature = get_feature
 };

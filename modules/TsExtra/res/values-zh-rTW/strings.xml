@@ -6,9 +6,9 @@
    <string name="yes">是</string>
    <string name="no">否</string>
    <string name="newinstall_subject">安裝成功</string>
-   <string name="newinstall_welcome">祝賀!Xiaomi mi4c安裝TS LOS14.1成功\n，為提升使用體驗，您可以查看壹下ROM增強設置\n，同時可以在Paypal和Google Play Store對我進行捐贈\n，Enjoy!</string>
+   <string name="newinstall_welcome">祝賀!Xiaomi mi4c安裝TS aospa7成功\n，為提升使用體驗，您可以查看壹下ROM增強設置\n，同時可以在Paypal和Google Play Store對我進行捐贈\n，Enjoy!</string>
    <string name="update_subject">升級成功</string>
-   <string name="update_welcome">祝賀！Xiaomi mi4c更新TS LOS14.1成功\n，願意與我壹起分擔服務器開支可以在Paypal和Google Play Store對我進行捐贈\n，Enjoy!</string>
+   <string name="update_welcome">祝賀！Xiaomi mi4c更新TS aospa7成功\n，願意與我壹起分擔服務器開支可以在Paypal和Google Play Store對我進行捐贈\n，Enjoy!</string>
    <string name="reboot_reason_captive">正在改變網絡檢測模式，需要重啟系統，是否重啟？</string>
    <!-- Disable fast charge blink -->
    <string name="pref_title_enable_nochgp">快速充電時開啟指示燈閃爍</string>

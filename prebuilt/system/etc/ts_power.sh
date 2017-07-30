@@ -126,8 +126,8 @@ case "$profile" in
 		echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 		
 		# 0ms input boost
-		echo 0 > /sys/module/cpu_boost/parameters/input_boost_freq
-		echo 0 > /sys/module/cpu_boost/parameters/input_boost_ms		
+		echo 0 > /sys/kernel/cpu_input_boost/ib_freqs
+		echo 0 > /sys/kernel/cpu_input_boost/ib_duration_ms		
 
 		# 180Mhz GPU max speed
 		echo "powersave" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
@@ -177,8 +177,8 @@ case "$profile" in
 		echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 		
 		# 40ms input boost @ 600Mhz (only little cluster)
-		echo "0:600000 1:600000 2:600000 3:600000 4:0 5:0" > /sys/module/cpu_boost/parameters/input_boost_freq
-		echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
+		echo "0:600000 1:600000 2:600000 3:600000 4:0 5:0" > /sys/kernel/cpu_input_boost/ib_freqs
+		echo 40 > /sys/kernel/cpu_input_boost/ib_duration_ms
 
 		# 367Mhz GPU max speed
 		echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
@@ -228,8 +228,8 @@ case "$profile" in
 		echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 		
 		# 40ms input boost @ 1.2Ghz
-		echo "0:1248000 1:1248000 2:1248000 3:1248000 4:1248000 5:1248000" > /sys/module/cpu_boost/parameters/input_boost_freq
-		echo 40 > /sys/module/cpu_boost/parameters/input_boost_ms
+		echo "0:1248000 1:1248000 2:1248000 3:1248000 4:1248000 5:1248000" > /sys/kernel/cpu_input_boost/ib_freqs
+		echo 40 > /sys/kernel/cpu_input_boost/ib_duration_ms
 
 		# 600Mhz GPU max speed
 		echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
@@ -268,8 +268,8 @@ case "$profile" in
 		echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 		
 		# 100ms input boost @ 1.4Ghz / 1.8Ghz
-		echo "0:1440000 1:1440000 2:1440000 3:1440000 4:1824000 5:1824000" > /sys/module/cpu_boost/parameters/input_boost_freq
-		echo 100 > /sys/module/cpu_boost/parameters/input_boost_ms		
+		echo "0:1440000 1:1440000 2:1440000 3:1440000 4:1824000 5:1824000" > /sys/kernel/cpu_input_boost/ib_freqs
+		echo 100 > /sys/kernel/cpu_input_boost/ib_duration_ms		
 
 		# 600Mhz GPU min and max speed
 		# GPU locked at 600Mhz

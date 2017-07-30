@@ -9,6 +9,6 @@ endif
 
 # TS
 PRODUCT_PROPERTY_OVERRIDES += \
-	ro.ts.build=ts-los-14.1
+	ro.ts.build=ts-aospa7
 PRODUCT_PROPERTY_OVERRIDES += \
-	cm.updater.uri=http://31.7.184.104/LIBRA_LOS141_OTA/api
+	cm.updater.uri=http://31.7.184.104/LIBRA_AOSPA7_OTA/api

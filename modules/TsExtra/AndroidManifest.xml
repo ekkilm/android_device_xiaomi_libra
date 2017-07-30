@@ -33,10 +33,11 @@
             android:label="@string/app_name" >
 
 		  <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-                <action android:name="com.android.settings.MANUFACTURER_APPLICATION_SETTING" />
-          </intent-filter>
+                <action android:name="com.android.settings.action.EXTRA_SETTINGS" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+            <meta-data android:name="com.android.settings.category"
+                    android:value="com.android.settings.category.device" />
 	    
 	  	<meta-data android:name="com.android.settings.title" android:resource="@string/app_name" />
 	  	<meta-data android:name="com.android.settings.icon" android:resource="@drawable/ic_launcher" />

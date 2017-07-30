@@ -25,9 +25,14 @@ allow isolated_app app_data_file:dir search;
 
 set_prop(qti_init_shell, ts_post_init_done_prop)
 allow qti_init_shell system_data_file:file open;
-allow qti_init_shell persist_ts_profile:file open;
-allow qti_init_shell persist_ts_profile:file read;
-allow qti_init_shell persist_ts_profile:file getattr;
+allow qti_init_shell persist_ts_profile:file { getattr open read };
+allow system_app persist_ts_profile:file { getattr open };
+allow system_app persist_ts_profile:property_service set;
+allow system_app persist_ts_profile:file read;
+allow system_app sysfs:file write;
+allow system_app sysfs_devices_system_cpu:file write;
+allow system_app sysfs_thermal:file write;
+
 allow qti_init_shell sysfs:dir setattr;
 allow qti_init_shell sysfs:lnk_file setattr;
 allow qti_init_shell sysfs_devices_system_cpu:dir setattr;
@@ -53,5 +58,9 @@ set_prop(system_server, ts_post_init_done_prop)
 set_prop(system_server, persist_ts_profile)
 allow system_server shell_exec:file { execute execute_no_trans getattr open read };
 allow system_server sysfs_thermal:file write;
+allow system_server persist_file:dir getattr;
 
 allow cameraserver sysfs:file write;
+
+allow shell dalvikcache_data_file:dir write;
+allow shell self:capability dac_override;

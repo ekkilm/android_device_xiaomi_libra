@@ -26,12 +26,6 @@
     <PreferenceCategory
             android:title="@string/pref_header_root"
             android:key="pref_header_root_settings">
-
-		<CheckBoxPreference
-			android:key="hroot_en_b"
-			android:title="@string/pref_title_enable_hroot"
-			android:summary="@string/pref_summary_enable_hroot"
-			android:defaultValue="false" />
 	
 		<Preference
 			android:key="install_su"
@@ -50,6 +44,14 @@
     <PreferenceCategory
             android:title="@string/pref_header_extra"
             android:key="pref_header_extra_settings">
+
+	<ListPreference
+		android:key="powerprofile"
+		android:title="@string/pref_title_powerprofile"
+		android:summary="@string/pref_summary_powerprofile"
+		android:entries="@array/powerprofile_entries"
+		android:entryValues="@array/powerprofile_values"
+		android:defaultValue="1" />
 
          <Preference
 			android:key="install_vulkan"

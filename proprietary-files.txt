@@ -814,7 +814,6 @@ lib/libjni_resource_drm.so
 lib64/libjni_resource_drm.so
 vendor/lib/libtzdrmgenprov.so
 vendor/lib64/libtzdrmgenprov.so
-vendor/lib/mediadrm/libwvdrmengine.so
 
 # GPS (from ether)
 bin/garden_app

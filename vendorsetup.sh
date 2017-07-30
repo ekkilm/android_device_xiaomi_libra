@@ -20,6 +20,6 @@
 # In particular, you can add lunch options with the add_lunch_combo
 # function: add_lunch_combo generic-eng
 
-add_lunch_combo lineage_libra-user
-add_lunch_combo lineage_libra-userdebug
-add_lunch_combo lineage_libra-eng
+add_lunch_combo pa_libra-user
+add_lunch_combo pa_libra-userdebug
+add_lunch_combo pa_libra-eng

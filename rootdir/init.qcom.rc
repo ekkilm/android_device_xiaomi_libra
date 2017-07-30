@@ -198,8 +198,6 @@ on boot
     # Touchscreen
     chown root system /proc/touchscreen/double_tap_enable
     chmod 0660 /proc/touchscreen/double_tap_enable
-    chown root system /proc/touchscreen/edge_touch_mode
-    chmod 0660 /proc/touchscreen/edge_touch_mode
 
     # Key disabler
     chown root system /proc/touchscreen/nav_button_enable
@@ -903,6 +901,8 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 
 service charger /charger
     class charger
+    critical
+    group system graphics
     seclabel u:r:healthd:s0
 
 service ssr_diag /system/bin/ssr_diag
@@ -955,15 +955,15 @@ service charger_monitor /system/bin/charger_monitor
     group root
     disabled
 
-service qbcharger /charger -m 1
-    disabled
-    oneshot
+#service qbcharger /charger -m 1
+#    disabled
+#    oneshot
 
-on property:sys.qbcharger.enable=true
-    start qbcharger
+#on property:sys.qbcharger.enable=true
+#    start qbcharger
 
-on property:sys.qbcharger.enable=false
-    stop qbcharger
+#on property:sys.qbcharger.enable=false
+#    stop qbcharger
 
 service diag_mdlog_start /system/bin/diag_mdlog -n 20
     class late_start

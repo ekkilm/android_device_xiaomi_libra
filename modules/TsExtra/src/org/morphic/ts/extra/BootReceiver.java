@@ -32,9 +32,7 @@ import java.io.BufferedOutputStream;
 
 import android.content.IntentFilter;
 
-import cyanogenmod.providers.CMSettings;
-
-import static android.provider.Settings.Secure.DOUBLE_TAP_TO_WAKE;
+//Simport static android.provider.Settings.Secure.DOUBLE_TAP_TO_WAKE;
 import android.os.UserHandle;
 
 public class BootReceiver extends BroadcastReceiver 
@@ -67,14 +65,14 @@ public class BootReceiver extends BroadcastReceiver
         
         if (val.equals(""))
         {
-            title = "Team Superluminal LOS14.1";
+            title = "Team Superluminal aospa7";
             msg = context.getResources().getString(R.string.newinstall_welcome);
             subject = context.getResources().getString(R.string.newinstall_subject);
             SystemProperties.set("persist.sys.ts.bc", val2);
         }
         else if (!val.equals(val2))
         {
-            title = "Team Superluminal LOS14.1";
+            title = "Team Superluminal aospa7";
             msg = context.getResources().getString(R.string.update_welcome);
             subject = context.getResources().getString(R.string.update_subject);
             SystemProperties.set("persist.sys.ts.bc", val2);

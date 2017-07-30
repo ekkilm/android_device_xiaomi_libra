@@ -28,7 +28,7 @@ import android.util.Log;
 
 public class TiltSensor implements SensorEventListener {
 
-    private static final boolean DEBUG = true;//false;
+    private static final boolean DEBUG = false;
     private static final String TAG = "TiltSensor";
 
     private static final int SENSOR_WAKELOCK_DURATION = 200;

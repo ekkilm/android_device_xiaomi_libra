@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<string-array name="powerprofile_entries">
+<item>Efficiency</item>
+<item>Balanced</item>
+<item>Fast</item>
+<item>Performance</item>
+</string-array>
+<string-array name="powerprofile_values">
+<item>3</item>
+<item>1</item>
+<item>4</item>
+<item>2</item>
+</string-array>
+</resources>

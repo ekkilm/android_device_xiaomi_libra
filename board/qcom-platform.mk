@@ -1,5 +1,3 @@
-BOARD_USES_QCOM_HARDWARE := true
-
 # RIL
 TARGET_RIL_VARIANT := caf
 
