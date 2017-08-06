@@ -180,6 +180,9 @@ case "$profile" in
 		echo "0:600000 1:600000 2:600000 3:600000 4:0 5:0" > /sys/kernel/cpu_input_boost/ib_freqs
 		echo 40 > /sys/kernel/cpu_input_boost/ib_duration_ms
 
+		# I/O scheduler
+		echo "zen" > /sys/block/mmcblk0/queue/scheduler
+
 		# 367Mhz GPU max speed
 		echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
 		echo 367000000 > /sys/class/kgsl/kgsl-3d0/devfreq/max_freq

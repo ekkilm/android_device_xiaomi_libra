@@ -6,6 +6,10 @@ BOARD_USES_QC_TIME_SERVICES := true
 # Power
 TARGET_POWERHAL_VARIANT := tspower
 
+# Platform features
+TARGET_DISABLE_DASH := false
+TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
+
 # Enable peripheral manager
 TARGET_PER_MGR_ENABLED := true
 

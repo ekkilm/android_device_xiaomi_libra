@@ -10,5 +10,3 @@ endif
 # TS
 PRODUCT_PROPERTY_OVERRIDES += \
 	ro.ts.build=ts-aospa7
-PRODUCT_PROPERTY_OVERRIDES += \
-	cm.updater.uri=http://31.7.184.104/LIBRA_AOSPA7_OTA/api
