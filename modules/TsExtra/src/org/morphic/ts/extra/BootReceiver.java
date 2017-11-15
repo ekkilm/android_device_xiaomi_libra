@@ -32,7 +32,6 @@ import java.io.BufferedOutputStream;
 
 import android.content.IntentFilter;
 
-//Simport static android.provider.Settings.Secure.DOUBLE_TAP_TO_WAKE;
 import android.os.UserHandle;
 
 public class BootReceiver extends BroadcastReceiver 

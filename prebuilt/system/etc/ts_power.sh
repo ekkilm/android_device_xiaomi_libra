@@ -127,7 +127,7 @@ case "$profile" in
 		
 		# 0ms input boost
 		echo 0 > /sys/kernel/cpu_input_boost/ib_freqs
-		echo 0 > /sys/kernel/cpu_input_boost/ib_duration_ms		
+		echo 0 > /sys/kernel/cpu_input_boost/ib_duration_ms
 
 		# 180Mhz GPU max speed
 		echo "powersave" > /sys/class/kgsl/kgsl-3d0/devfreq/governor
@@ -176,12 +176,12 @@ case "$profile" in
 		echo 2 > /sys/devices/system/cpu/cpu4/core_ctl/max_cpus
 		echo 0 > /sys/devices/system/cpu/cpu4/core_ctl/min_cpus
 		
-		# 40ms input boost @ 600Mhz (only little cluster)
+		# 40ms input boost @ 864&600Mhz (only little cluster)
 		echo "0:600000 1:600000 2:600000 3:600000 4:0 5:0" > /sys/kernel/cpu_input_boost/ib_freqs
 		echo 40 > /sys/kernel/cpu_input_boost/ib_duration_ms
 
 		# I/O scheduler
-		echo "zen" > /sys/block/mmcblk0/queue/scheduler
+		echo "cfq" > /sys/block/mmcblk0/queue/scheduler
 
 		# 367Mhz GPU max speed
 		echo "msm-adreno-tz" > /sys/class/kgsl/kgsl-3d0/devfreq/governor

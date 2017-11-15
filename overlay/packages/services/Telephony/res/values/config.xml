@@ -18,14 +18,7 @@
      for different hardware or product builds. -->
 <resources>
 
-	<!-- Determine whether we should show the "listen for instructions" screen after
-         successfully placing the OTA call -->
-    <integer name="OtaShowListeningScreen">1</integer>
-
-    <!-- Flag indicating if dtmf tone type is enabled -->
-    <bool name="dtmf_type_enabled">true</bool>
-
-	<!-- Determine whether calls to mute the microphone in PhoneUtils
+    <!-- Determine whether calls to mute the microphone in PhoneUtils
          are routed through the android.media.AudioManager class (true) or through
          the com.android.internal.telephony.Phone interface (false). -->
     <bool name="send_mic_mute_to_AudioManager">true</bool>
@@ -42,16 +35,12 @@
     <!-- Show cdma auto network mode in (glabal) roaming -->
     <bool name="config_show_cdma" translatable="false">true</bool>
 
-    <!-- Allows the telephony HFA logic to run even if we're not in setup wizard. -->
-    <bool name="config_allow_hfa_outside_of_setup_wizard">false</bool>
-
-    <!-- Disable data before manual PLMN scan if true-->
-    <bool name="config_disable_data_manual_plmn">true</bool>
-
     <!-- Show Preferred Network Type options in No SIM case -->
     <bool name="config_no_sim_display_network_modes">true</bool>
 
     <!-- Show enabled lte option for lte device -->
     <bool name="config_enabled_lte" translatable="false">true</bool>
 
+    <!-- Allows the telephony HFA logic to run even if we're not in setup wizard. -->
+    <bool name="config_allow_hfa_outside_of_setup_wizard">false</bool>
 </resources>
